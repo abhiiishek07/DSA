@@ -35,11 +35,8 @@ public:
             st.pop();
             curr=curr->next;
         }
-        while(head){
-               curr->next=head;
-                curr=curr->next;
-                head=head->next;
-        }
+        if(head)
+            curr->next=head;
         return dummy->next;
     }
 };
