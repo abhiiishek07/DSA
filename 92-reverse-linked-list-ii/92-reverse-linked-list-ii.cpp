@@ -11,32 +11,26 @@
 class Solution {
 public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
-        stack<int>st;
         ListNode* dummy=new ListNode(-1);
         ListNode* curr=dummy;
         int pos=1;
-        while(head){
-            if(pos<left){
-                curr->next=new ListNode(head->val);
-                curr=curr->next;
-                head=head->next;
-                pos++;
-            }
-            else if(pos>=left && pos<=right){
-                st.push(head->val);
-                head=head->next;
-                pos++;
-            }
-            else
-                break;
+       while (head && pos<left){
+           curr->next=new ListNode(head->val);
+           curr=curr->next;
+           head=head->next;
+           pos++;
+       }
+        ListNode* afterRev= head;          // after reversing. 2,3,4 => 4,3,2 . afterRev=2
+        ListNode* prev=NULL;
+        while(head && pos<=right){
+            ListNode* temp=head->next;
+            head->next=prev;
+            prev=head;
+            head=temp;
+            pos++;
         }
-        while(!st.empty()){
-            curr->next=new ListNode(st.top());
-            st.pop();
-            curr=curr->next;
-        }
-        if(head)
-            curr->next=head;
+        curr->next=prev;
+        afterRev->next=head;
         return dummy->next;
     }
 };
