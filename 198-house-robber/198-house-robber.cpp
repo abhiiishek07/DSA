@@ -1,23 +1,6 @@
 class Solution {
 public:
-    int rob(vector<int>& nums) {
-        int n=nums.size();
-        if(n==1)
-            return nums[0];
-        int dp[n];
-        dp[0]=nums[0];
-        dp[1]=max(nums[0],nums[1]);
-        
-        for(int i=2;i<n;i++){
-            int pick= nums[i]+dp[i-2];
-            int not_pick= 0+dp[i-1];
-            dp[i]=max(pick,not_pick);
-        }
-        return dp[n-1];
-    }
-};
-
-/* Recursion (will give TLE). TC- 2^n, sc: O(n)
+    /* Recursion (will give TLE). TC- 2^n, sc: O(n)
    
    int solve(int idx,vector<int>nums){
         if(idx==0)                //base case
@@ -34,6 +17,7 @@ public:
         return solve(n-1,nums);
     }
            ****************
+           
     MEMOIZATION (accepted). TC: O(n), sc: O(n)+O(n)
     
      int solve(int idx,vector<int>nums,vector<int>&dp){
@@ -56,4 +40,38 @@ public:
         return solve(n-1,nums,dp);
     }
           ****************
+  TABULATION (accepted) . TC: O(n), SC: O(n);
+    int rob(vector<int>& nums) {
+        int n=nums.size();
+        if(n==1)
+            return nums[0];
+        int dp[n];
+        dp[0]=nums[0];
+        dp[1]=max(nums[0],nums[1]);
+        
+        for(int i=2;i<n;i++){
+            int pick= nums[i]+dp[i-2];
+            int not_pick= 0+dp[i-1];
+            dp[i]=max(pick,not_pick);
+        }
+        return dp[n-1];
+    }
+     SPACE OPTIMSED SOLN. TC: O(n), SC: O(1);
     */
+    int rob(vector<int>& nums) {
+        int n=nums.size();
+        if(n==1) return nums[0];
+        int prev2=nums[0];
+        int prev= max(nums[0],nums[1]);
+        for(int i=2;i<n;i++){
+            int pick= nums[i]+ prev2;
+            int not_pick=0+prev;
+            
+            int curr=max(pick,not_pick);
+            
+            prev2=prev;
+            prev=curr;
+        }
+        return prev;
+    }
+};
