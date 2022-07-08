@@ -10,18 +10,16 @@ class Solution {
     bool isVowel(char ch){
         return ch=='a' || ch=='e' || ch=='i' || ch=='o' || ch=='u';
     }
-    void solve(string s,int i,string &str,set<string>&ans){
-        if(i>=s.size()){
+    void solve(string s,int i,string str,set<string>&ans){
+        if(i>=s.size()){                      // base constion
             if(str.size()>=2){
                 if(isVowel(str[0]) && !isVowel(str[str.size()-1]))
                   ans.insert(str);
             }
             return;
         }
-        str.push_back(s[i]);
-        solve(s,i+1,str,ans);
-        str.pop_back();
-        solve(s,i+1,str,ans);
+        solve(s,i+1,str+s[i],ans);                   //pick
+        solve(s,i+1,str,ans);                   // not pick
         
     }
     set<string> allPossibleSubsequences(string S) {
