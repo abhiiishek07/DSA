@@ -1,6 +1,35 @@
 class Solution {
 public:
-    int solve(int i,int prev,vector<vector<int>>&grid,vector<vector<int>>&dp){
+    int minFallingPathSum(vector<vector<int>>& grid) {
+        int n=grid.size();
+        vector<vector<int>>dp(n,vector<int>(n,-1));
+        for(int i=0;i<n;i++)
+            dp[0][i]=grid[0][i];
+        
+        for(int i=1;i<n;i++){
+            for(int j=0;j<n;j++){
+                int prev=j,mini=INT_MAX;
+                for(int k=0;k<n;k++)
+                   if(k!=prev){
+                    int sum= grid[i][prev]+dp[i-1][k];
+                    mini=min(mini,sum);
+                }
+                dp[i][prev]=mini;
+            }
+        }
+         int res=INT_MAX;
+        for(int lastRow=0;lastRow<n;lastRow++){
+            int potAns= dp[n-1][lastRow];
+            res=min(res,potAns);
+        }
+        return res;
+        
+    }
+};
+
+/* MEMO (accepted but very high run time)
+
+        int solve(int i,int prev,vector<vector<int>>&grid,vector<vector<int>>&dp){
         if(i==0){
             return grid[i][prev];
         }
@@ -26,3 +55,4 @@ public:
         return res;
     }
 };
+*/
