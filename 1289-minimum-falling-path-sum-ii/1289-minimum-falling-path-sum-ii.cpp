@@ -2,7 +2,7 @@ class Solution {
 public:
     int solve(int i,int prev,vector<vector<int>>& grid,vector<vector<int>>&dp){
         if(i==0){
-            int mini=1000;
+            int mini=INT_MAX;
             for(int c=0;c<grid[0].size();c++){
                 if(c!=prev)
                     mini=min(mini,grid[0][c]);
