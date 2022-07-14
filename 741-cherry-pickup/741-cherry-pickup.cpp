@@ -4,14 +4,14 @@ public:
         if(i1<0 || j1<0 || i2<0 || j2<0 || grid[i1][j1]==-1 || grid[i2][j2]==-1)
             return -1e8;
         
-        if(i1==0 && j1==0)
+        if(i1==0 && j1==0 && j1==0 && j2==0)
             return grid[i1][j1];
         
         if(dp[i1][j1][i2][j2]!=-1)
             return dp[i1][j1][i2][j2];
         
         int val= grid[i1][j1];
-        if(i1!=i2)
+        if(i1!=i2 && j1!=j2)
             val+= grid[i2][j2];
         
         int ll= solve(i1,j1-1,i2,j2-1,grid,dp);
