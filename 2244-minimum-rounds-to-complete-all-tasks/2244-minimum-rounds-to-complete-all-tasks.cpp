@@ -6,29 +6,13 @@ public:
             mp[x]++;
         int ans=0;
         for(auto it:mp){
-            int cnt=it.second;
-            if(cnt>=2){
-                while(cnt>=2){
-                    if(cnt>4){
-                        ans++;
-                        cnt-=3;
-                    }
-                    if(cnt==4){
-                        ans+=2;
-                        cnt=0;
-                    }
-                    else if(cnt==3){
-                        ans++;
-                        cnt=0;
-                    }
-                    else if(cnt==2){
-                        ans++;
-                        cnt=0;
-                    }
-                }
-            }
-            else{
+            if(it.second<=1)
                 return -1;
+            else{
+                if(it.second%3==0)
+                    ans+= it.second/3;
+                else
+                    ans+= it.second/3+1;
             }
         }
         return ans;
