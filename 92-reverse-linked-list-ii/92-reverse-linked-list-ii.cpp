@@ -13,9 +13,9 @@ public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
         ListNode* dummy=new ListNode(-1);
         ListNode* curr=dummy;
-        int pos=1;
-       while (head && pos<left){
-           curr->next=new ListNode(head->val);
+        int pos=1; 
+       while (head && pos<left){           
+           curr->next=head;
            curr=curr->next;
            head=head->next;
            pos++;
