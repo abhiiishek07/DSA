@@ -10,7 +10,7 @@ public:
             int val= pq.top().first;
             int lab= pq.top().second;
             pq.pop();
-            if(mp.find(lab)==mp.end() || mp[lab]<useLimit){
+            if(mp[lab]<useLimit){
                 ans+= val;
                 numWanted--;
             }
