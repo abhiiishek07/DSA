@@ -19,20 +19,15 @@ public:
         string ans;
         for(string str:words){
             string s;
-            bool flag=true;
             for(char ch:str){
                 s+= ch;
-                if(mp.find(s)!=mp.end()){
-                    ans+=s;
-                    flag=false;
+                if(mp.find(s)!=mp.end())
                     break;
-                }
             }
-            if(flag)
-                ans+= str;
+            ans+=s;
             ans+=" ";
         }
-        ans.pop_back();
+        ans.pop_back();                           // removing the last added space
         return ans;
     }
 };
