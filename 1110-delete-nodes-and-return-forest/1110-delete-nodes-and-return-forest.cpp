@@ -11,29 +11,27 @@
  */
 class Solution {
 public:
-    void solve(TreeNode* &root,unordered_set<int>st,vector<TreeNode*>&ans){
+    TreeNode* solve(TreeNode* &root,unordered_set<int>st,vector<TreeNode*>&ans){
         if(!root)
-            return;
-        solve(root->left,st,ans);
-        solve(root->right,st,ans);
-        if(root->left && st.find(root->left->val)!=st.end())
-            root->left=NULL;
-        if(root->right && st.find(root->right->val)!=st.end())
-            root->right=NULL;
+            return NULL;
+        root->left=solve(root->left,st,ans);
+        root->right=solve(root->right,st,ans);
         if(st.find(root->val)!=st.end()){
             if(root->left)
                 ans.push_back(root->left);
             if(root->right)
                 ans.push_back(root->right);
+            return NULL;
         }
+        return root;
         
     }
     vector<TreeNode*> delNodes(TreeNode* root, vector<int>& to_delete) {
         vector<TreeNode*>ans;
         unordered_set<int>st(to_delete.begin(),to_delete.end());
-        solve(root,st,ans);
         if(st.find(root->val)==st.end())
-        ans.push_back(root);
+            ans.push_back(root);
+        solve(root,st,ans);
         return ans;
     }
 };
