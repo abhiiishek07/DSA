@@ -1,6 +1,16 @@
 class Solution {
 public:
     int minimumOperations(vector<int>& nums) {
+        unordered_set<int>st;
+        for(int x:nums){
+            if(x>0)
+                st.insert(x);
+        }
+        return st.size();
+    }
+};
+/* Accepted
+    int minimumOperations(vector<int>& nums) {
         priority_queue<int,vector<int>,greater<int>>pq;
         for(int x:nums){
             if(x>0)
@@ -25,3 +35,4 @@ public:
         return cnt;
     }
 };
+*/
