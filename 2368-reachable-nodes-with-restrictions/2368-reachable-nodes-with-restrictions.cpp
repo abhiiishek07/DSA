@@ -1,12 +1,12 @@
 class Solution {
 public:
     int ans=0;
-    void dfs(int src,vector<vector<int>>&adj,vector<int>&vis,unordered_set<int>&st){
+    void dfs(int src,vector<vector<int>>&adj,vector<int>&vis){
         vis[src]=1;
         ans++;
         for(int v:adj[src]){
-            if(st.find(v)==st.end() && !vis[v])
-                dfs(v,adj,vis,st);
+            if(!vis[v])
+                dfs(v,adj,vis);
         }
         return;
     }
@@ -17,8 +17,9 @@ public:
             adj[it[1]].push_back(it[0]);
         }
         vector<int>vis(n+1,0);
-        unordered_set<int>st(restricted.begin(),restricted.end());
-        dfs(0,adj,vis,st);
+        for(int x:restricted)
+            vis[x]=1;
+        dfs(0,adj,vis);
         return ans;
     }
 };
