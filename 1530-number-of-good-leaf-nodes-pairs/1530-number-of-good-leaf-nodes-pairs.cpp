@@ -11,6 +11,32 @@
  */
 class Solution {
 public:
+    vector<int> solve(TreeNode* root,int k,int &cnt){
+        if(!root)
+            return {};
+        if(!root->left && !root->right)
+            return {1};
+        vector<int>left= solve(root->left,k,cnt);
+        vector<int>right=solve(root->right,k,cnt);
+        
+        vector<int>temp;
+        for(int x:left) temp.push_back(x+1);
+        for(int y:right) temp.push_back(y+1);
+        
+        for(int x:left){
+            for(int y:right)
+                cnt+= (x+y)<=k?1:0;
+        }
+        return temp;
+    }
+    int countPairs(TreeNode* root, int distance) {
+        int cnt=0;
+        vector<int>x=solve(root,distance,cnt);
+        return cnt;
+    }
+};
+/* Accepted 
+
     void findGoodPairs(TreeNode* root,int k,int &cnt){
         if(!root || k<0)
             return;
@@ -31,8 +57,7 @@ public:
                 findGoodPairs(curr->right,k-1,cnt);
             k--;
             prev=curr;
-        }
-        
+        } 
         return;
     }
     void solve(TreeNode* root,int k,int &cnt,stack<TreeNode*>st){
@@ -52,4 +77,4 @@ public:
         solve(root,distance,cnt,st);
         return cnt/2;
     }
-};
+    */
