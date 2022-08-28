@@ -5,20 +5,18 @@ public:
         vector<int>ans;
         vector<int>preSum;
         int sum=0;
-        // for(int x:nums){
-        //     sum+=x;
-        //     preSum.push_back(sum);
-        // }
+        for(int x:nums){
+            sum+=x;
+            preSum.push_back(sum);
+        }
         for(int x:queries){
-            int sum=0,cnt=0;
-            for(int y:nums){
-                sum+=y;
-                cnt++;
-                if(sum>x)
+            int cnt=0;
+            for(int y:preSum){
+                if(y<=x)
+                    cnt++;
+                else
                     break;
             }
-            if(sum>x)
-                cnt--;
             ans.push_back(cnt);  
         }
         return ans;
