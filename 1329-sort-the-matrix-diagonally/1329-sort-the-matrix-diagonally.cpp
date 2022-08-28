@@ -16,22 +16,20 @@ public:
                 }
             }
         }
-        vector<vector<int>>ans(m,vector<int>(n,0));
-        unordered_set<int>seen;
+        vector<vector<int>>ans(m,vector<int>(n));
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                if(seen.find(i-j)==seen.end() && mp.find(i-j)!=mp.end()){
+                if(mp.find(i-j)!=mp.end()){
                     int x=i,y=j;
                     for(int num:mp[i-j]){
                         ans[x][y]=num;
                         x+=1;
                         y+=1;
                     }
-                    seen.insert(i-j);
+                    mp.erase(i-j);
                 }
             }
         }
         return ans;
-        
     }
 };
