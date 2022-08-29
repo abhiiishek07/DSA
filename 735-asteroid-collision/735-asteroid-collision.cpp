@@ -14,13 +14,12 @@ public:
             else
                 st.push(x);
         }
-        vector<int>ans;
-        // return ans;
-        while(!st.empty()){
-            ans.push_back(st.top());
+        int n=st.size();
+        vector<int>ans(n);
+        for(int i=n-1;i>=0;i--){
+            ans[i]=st.top();
             st.pop();
         }
-        reverse(ans.begin(),ans.end());
         return ans;
     }
 };
