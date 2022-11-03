@@ -11,14 +11,9 @@ using namespace std;
 class Solution{
     public:
   int solve(vector<int>&arr,int s,int e,int k,vector<vector<int>>&dp){
-    //   if(s==e){
-    //       if(arr[s]<=k)
-    //       return 0;
-    //       else
-    //       return 1;
-    //   }
-      if(s>e)
+      if(s==e)             // only one element so min and max ele will be same
       return 0;
+      
       if(arr[e]-arr[s]<=k)
       return 0;
       
