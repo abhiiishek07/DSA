@@ -16,11 +16,13 @@ public:
                 }
                 ans+= it.second;
             }
-            else if(str[0]<str[1]){
+            else{
                 string temp=str;
                 reverse(temp.begin(),temp.end());
-                if(mp.find(temp)!=mp.end())
+                if(mp.find(temp)!=mp.end()){
                 ans+= min(it.second,mp[temp])*2;
+                mp.erase(temp);
+                }
             }
         }
         if(flag)
