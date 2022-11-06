@@ -16,11 +16,10 @@ public:
         int i=9;
         vector<int>ans;
         while(i>=0){
-            if(N>=denom[i]){
+            while(N>=denom[i]){
                 ans.push_back(denom[i]);
                 N-=denom[i];
-            }
-            else
+                }
             i--;
         }
         return ans;
