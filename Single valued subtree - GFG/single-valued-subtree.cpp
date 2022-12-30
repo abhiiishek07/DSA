@@ -114,10 +114,7 @@ class Solution
             if((root->data==left.second || left.second==INT_MAX) && (root->data==right.second || right.second==INT_MAX)){
                  cnt++;
                  return {true,root->data};
-
             }
-           
-            
         }
         return {false,root->data};
     }
