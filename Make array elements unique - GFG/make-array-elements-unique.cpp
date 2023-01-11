@@ -13,9 +13,6 @@ class Solution {
         // Code here
         long long ans=0;
         sort(arr.begin(),arr.end());
-        unordered_map<int,int>mp;
-        for(int num:arr)
-        mp[num]++;
         for(int i=1;i<N;i++){
             if(arr[i]<=arr[i-1]){
                 int t=arr[i];
