@@ -25,22 +25,10 @@ class Solution{
             }
             else{
                 matrix[i][j]=0;
-                if(dir=='r'){
-                    dir='d';
-                    i++;
-                }
-                else if(dir=='l'){
-                    dir='u';
-                    i--;
-                }
-                else if(dir=='u'){
-                    dir='r';
-                    j++;
-                }
-                else if(dir=='d'){
-                    dir='l';
-                    j--;
-                }
+                if(dir=='r') dir='d';
+                else if(dir=='d') dir='l';
+                else if(dir=='l') dir='u';
+                else if(dir=='u') dir='r';
             }
         }
         return {x,y};
