@@ -6,13 +6,13 @@ using namespace std;
 class Solution
 {
 	public:
-	    void find(int i,string s,set<string>&st){
+	    void solve(int i,string s,set<string>&st){
 	        if(i==s.size())
 	        st.insert(s);
 	        
 	        for(int k=i;k<s.size();k++){
 	            swap(s[i],s[k]);
-	            find(i+1,s,st);
+	            solve(i+1,s,st);
 	            swap(s[i],s[k]);
 	        }
 	    }
@@ -20,11 +20,11 @@ class Solution
 		{
 		    // Code here there
 		    set<string>st;
-		    find(0,S,st);
+		    solve(0,S,st);
 		    vector<string>ans;
-		    for(auto it:st){
-		        ans.push_back(it);
-		    }
+		    for(auto it:st)
+		    ans.push_back(it);
+		    
 		    return ans;
 		}
 };
